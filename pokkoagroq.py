@@ -17,7 +17,7 @@ class PokkoaGroq:
         )
 
     def completion(self,prompt,temperature=0.3, top_p=1.0, presence_penalty=0, frequency_penalty=0 ):
-        print("Groq with model", self.model)
+        print(self.model_namespace," with model", self.model)
         prompt += "  必须用使用中文回复! must response in Chinese"
         print("prompt:",prompt)
         completion = self.client.chat.completions.create(

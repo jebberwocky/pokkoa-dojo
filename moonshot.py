@@ -17,7 +17,7 @@ class Moonshot:
         )
 
     def completion(self,prompt,temperature=0.3, top_p=1.0, presence_penalty=0, frequency_penalty=0 ):
-        print("Moonshot with model", self.model)
+        print(self.model_namespace," with model", self.model)
         completion = self.client.chat.completions.create(
             model=self.model,
             messages=[self.system_rule, {"role": "user", "content": prompt}

@@ -13,12 +13,15 @@ TODO
 
 ## Getting Started
 
-onfigure the fine-tuning settings in the provided configuration file
+configure the fine-tuning settings in the provided configuration file
+### output
+output to ./out
+
 ### dojo.yaml
 ```
-out:
-  csv: ./out/data_output.csv
 moonshot:
+  apikey: --masked--
+groq:
   apikey: --masked--
 ```
 ### prompt.txt
