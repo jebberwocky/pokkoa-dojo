@@ -13,6 +13,7 @@ TODO
 
 ## Getting Started
 
+
 configure the fine-tuning settings in the provided configuration file
 ### output
 output to ./out
@@ -20,9 +21,11 @@ output to ./out
 ### dojo.yaml
 ```
 moonshot:
-  apikey: --masked--
+    apikey: --masked--
 groq:
-  apikey: --masked--
+    apikey: --masked--
+datascope
+    apikey: --masked--
 ```
 ### prompt.txt
 test prompt goes here
@@ -30,5 +33,8 @@ test prompt goes here
 Write me a python script example 
 ```
 
-# Contact
+## Reference
+- https://help.aliyun.com/zh/dashscope/developer-reference/model-square/?spm=a2c4g.11186623.0.0.b0909b6e8qemG9
+
+## Contact
 liuzhiyuan@pokkoa.cc

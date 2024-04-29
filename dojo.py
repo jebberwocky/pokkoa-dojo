@@ -15,15 +15,17 @@ pokkoa_llama3 = PokkoaGroq("llama3-8b-8192")
 pokkoa_mixtral = PokkoaGroq("mixtral-8x7b-32768")
 pokkoa_gemma = PokkoaGroq("gemma-7b-it")
 pokkoa_qwen = PokkoaDataScope("qwen-turbo")
+pokkoa_qwen_72b = PokkoaDataScope("qwen-72b-chat")
 
 # models
 models = [moonshot,
           pokkoa_llama3,
           pokkoa_mixtral,
           pokkoa_gemma,
-          pokkoa_qwen ]
+          pokkoa_qwen,
+          pokkoa_qwen_72b]
 
-running_model = models[4]
+running_model = models[5]
 
 # set up the prompt
 with open("prompt.txt", "r") as file:
