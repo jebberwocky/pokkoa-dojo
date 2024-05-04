@@ -1,5 +1,7 @@
 # Pokkoa DOJO
 
+![dojo](https://github.com/jebberwocky/pokkoa-dojo/blob/main/pokkoa-dojo.jpg?raw=true)
+
 ## Overview
 
 This repository contains code for fine-tuning a pre-trained GPT (Generative Pre-trained Transformer) model on a specific dataset or task.
