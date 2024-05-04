@@ -2,7 +2,7 @@
 
 ## Overview
 
-The code in this repository provides a framework for loading a pre-trained GPT model, preprocessing and preparing a dataset, and fine-tuning the model on the provided data. The fine-tuned model can then be saved and used for various natural language processing tasks, such as text generation, summarization, or question answering, tailored to the domain or task it was fine-tuned on.
+This repository contains code for fine-tuning a pre-trained GPT (Generative Pre-trained Transformer) model on a specific dataset or task.
 
 ## Getting Started
 
