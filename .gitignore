@@ -4,6 +4,8 @@ out/*.csv
 hashed_out_short/*.csv
 hashed_out/*.csv
 human_dojo_text/*.csv
+human_result/*.csv
+human_score_all/*.csv
 dojo.yaml
 prompt.txt
 # Byte-compiled / optimized / DLL files

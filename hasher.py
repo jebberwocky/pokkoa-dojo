@@ -62,6 +62,7 @@ def process_csv_files(input_directory, output_directory, output_directory_short,
     os.makedirs(output_directory, exist_ok=True)
     total_count = 0
     total_elements = []
+    total_complete_els = []
     for filename in os.listdir(input_directory):
         if filename.endswith('.csv'):
             input_file = os.path.join(input_directory, filename)
@@ -104,19 +105,28 @@ def process_csv_files(input_directory, output_directory, output_directory_short,
                                 row[hashkey_index] = hash_value
                                 writer.writerow(row)
                             writer2.writerow([hash_value, row[5]])
-                            total_elements.append([hash_value, row[5]])
+                            total_elements.append([hash_value, "", row[5]])
+                            model_name = filename.split('.')[2]+"."+filename.split('.')[3]
+                            total_complete_els.append([hash_value,model_name]+row)
                 total_count = total_count + count
                 print(f"Processed file: {filename}, count: {count}")
 
     print(f"total count: {total_count}")
     lists = split_list_n(total_elements, split_n)
+    encoding = 'utf-8'
+    output_file_complete = os.path.join(output_directory_human, f'hashed_all.csv')
+    with open(output_file_complete, 'w', encoding=encoding) as output_file_complete:
+        writer = csv.writer(output_file_complete)
+        writer.writerow(['hashkey','model'] + header)
+        writer.writerows(total_complete_els)
     for index, l in enumerate(lists):
-        output_file_short = os.path.join(output_directory_human, f'hashed_{index}.csv')
-        with open(output_file_short, 'w') as output_file_short:
+        output_file_short = os.path.join(output_directory_human, f'hashed_{index}_{encoding}.csv')
+        with open(output_file_short, 'w', encoding=encoding) as output_file_short:
             writer = csv.writer(output_file_short)
             writer.writerow(['标号(请勿修改)', '分数', "内容"])
             writer.writerows(l)
             print(f"Processed file: hashed_{index}.csv, count: {len(l)}")
+
 
 
 directory_path = './out'
