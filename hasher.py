@@ -57,7 +57,7 @@ def split_list_n(data, n):
         sublists.append(data[start_index:end_index])
     return sublists
 
-
+# TODO: make input_directory works with subdirectory
 def process_csv_files(input_directory, output_directory, output_directory_short, output_directory_human, split_n):
     os.makedirs(output_directory, exist_ok=True)
     total_count = 0

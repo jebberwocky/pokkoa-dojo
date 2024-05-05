@@ -1,6 +1,7 @@
 
 .idea/
-out/*.csv
+out/
+prompts/prompt.refine1.txt
 hashed_out_short/*.csv
 hashed_out/*.csv
 human_dojo_text/*.csv

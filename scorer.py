@@ -29,7 +29,8 @@ df2 = pd.DataFrame(data)
 key_column = 'hashkey'
 merged_df = pd.merge(df1, df2, on=key_column, how='outer')
 merged_df.insert(1, 'score', merged_df.pop('score'))
-merged_df = merged_df.sort_values(by="model")
+# merged_df = merged_df.sort_values(by="model")
+merged_df = merged_df.sort_values(by="score",ascending=False)
 merged_df.to_csv("./human_score_all/human_scored.csv")
 print(merged_df)
 
