@@ -3,6 +3,7 @@ import hashlib
 import os
 from math import ceil
 
+prompt_name = "simple"
 
 def generate_hash(row, hash_length=16):
     """
@@ -66,8 +67,8 @@ def process_csv_files(input_directory, output_directory, output_directory_short,
     for filename in os.listdir(input_directory):
         if filename.endswith('.csv'):
             input_file = os.path.join(input_directory, filename)
-            output_file = os.path.join(output_directory, f'hashed_{filename}')
-            output_file_short = os.path.join(output_directory_short, f'hashed_{filename}')
+            output_file = os.path.join(output_directory, f'{prompt_name}_hashed_{filename}')
+            output_file_short = os.path.join(output_directory_short, f'{prompt_name}_hashed_{filename}')
             # Open the CSV file
             with open(input_file, 'r') as file:
                 reader = csv.reader(file)
@@ -114,13 +115,13 @@ def process_csv_files(input_directory, output_directory, output_directory_short,
     print(f"total count: {total_count}")
     lists = split_list_n(total_elements, split_n)
     encoding = 'utf-8'
-    output_file_complete = os.path.join(output_directory_human, f'hashed_all.csv')
+    output_file_complete = os.path.join(output_directory_human, f'{prompt_name}_hashed_all.csv')
     with open(output_file_complete, 'w', encoding=encoding) as output_file_complete:
         writer = csv.writer(output_file_complete)
         writer.writerow(['hashkey','model'] + header)
         writer.writerows(total_complete_els)
     for index, l in enumerate(lists):
-        output_file_short = os.path.join(output_directory_human, f'hashed_{index}_{encoding}.csv')
+        output_file_short = os.path.join(output_directory_human, f'{prompt_name}_hashed_{index}_{encoding}.csv')
         with open(output_file_short, 'w', encoding=encoding) as output_file_short:
             writer = csv.writer(output_file_short)
             writer.writerow(['标号(请勿修改)', '分数', "内容"])
@@ -129,7 +130,7 @@ def process_csv_files(input_directory, output_directory, output_directory_short,
 
 
 
-directory_path = './out'
+directory_path = './out/'+prompt_name
 output_directory = './hashed_out'
 output_directory_short = './hashed_out_short'
 output_directory_human = './human_dojo_text'
