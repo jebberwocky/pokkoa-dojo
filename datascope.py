@@ -15,7 +15,7 @@ class PokkoaDataScope:
                             "content": "你是一个只解释易经卦像的bot，你更擅长中文和英文的对话。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。"}
         dashscope.api_key = config["datascope"]["apikey"]
 
-    def completion(self, prompt, temperature=0.3, top_p=1.0, presence_penalty=0, frequency_penalty=0):
+    def completion(self, prompt, temperature=0.3, top_p=0.8, presence_penalty=0, frequency_penalty=1.1):
         if frequency_penalty < 0.0:
             return " Repetition_penalty should be greater than 0.0"
         print(self.model_namespace, " with model", self.model)

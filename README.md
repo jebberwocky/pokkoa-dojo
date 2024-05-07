@@ -48,6 +48,7 @@ dojo_setup_simple = {
 ```
 
 ### run huamn scoring
+- make sure setup the prompt_name in hasher.py and scorer.py
 - run hasher.py to create csv files for scoring
 - ./human_dojo_text contains scorable csv files
 - put scored csv files in ./human_result
