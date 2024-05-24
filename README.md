@@ -20,8 +20,17 @@ moonshot:
     apikey: --masked--
 groq:
     apikey: --masked--
-datascope
+datascope:
     apikey: --masked--
+deepseek:
+    apikey: --masked--
+baidu:
+  pokkoa:
+    apikey: --masked--
+    secretkey: --masked--
+  all:
+    acesskey: --masked--
+    secretkey: --masked--
 ```
 
 ### ./prompts/prompt.{name}.txt
