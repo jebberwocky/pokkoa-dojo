@@ -8,6 +8,7 @@ from deepseek import PokkoaDeepSeek
 from moonshot import Moonshot
 from pokkoagroq import PokkoaGroq
 from datascope import PokkoaDataScope
+from baidu import PokkoaBaidu
 
 # set up Moonshot
 moonshot = Moonshot()
@@ -19,6 +20,7 @@ pokkoa_gemma = PokkoaGroq("gemma-7b-it")
 pokkoa_qwen = PokkoaDataScope("qwen-turbo")
 pokkoa_qwen_72b = PokkoaDataScope("qwen-72b-chat")
 pokkoa_deepseek = PokkoaDeepSeek("deepseek-chat")
+pokkoa_baidu = PokkoaBaidu("ERNIE-LITE-8K")
 
 # models
 models = [moonshot,
@@ -78,7 +80,17 @@ dojo_setup_simple_deepseek = {
     "models": [pokkoa_deepseek]
 }
 
-dojo_test_set = dojo_setup_refine1
+dojo_setup_refine1_baidu = {
+    "name": "refine1",
+    "prompt": get_prompt_by_name("refine1"),
+    "temperature": [0.3],
+    "top_p": [0.9],
+    "presence_penalty": [0],
+    "frequency_penalty": [0],
+    "models": [pokkoa_baidu]
+}
+
+dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine1
 
 # Define output the directory path
 dir_path = "./out/" + dojo_test_set["name"] + "/"

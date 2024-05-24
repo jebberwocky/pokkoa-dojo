@@ -1,3 +1,4 @@
 groq
 OpenAI
 dashscope
+qianfan
