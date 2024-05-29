@@ -2,7 +2,6 @@ import csv
 import itertools
 import os
 import time
-import sys
 
 from deepseek import PokkoaDeepSeek
 from moonshot import Moonshot
