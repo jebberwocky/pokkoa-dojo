@@ -4,12 +4,12 @@
 
 ## Overview
 
-This repository contains code for fine-tuning a pre-trained GPT (Generative Pre-trained Transformer) model on a specific dataset or task.
+This repository contains code for evaluating the reasoning capabilities of different large language models (LLMs) using various prompts.
 
 ## Getting Started
 
 
-configure the fine-tuning settings in the provided configuration file
+configure the settings in the provided configuration file - dojo.yaml
 
 ### dojo
 - run dojo.py to get result fro each llms
