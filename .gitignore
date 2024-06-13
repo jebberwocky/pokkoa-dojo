@@ -2,7 +2,7 @@
 .idea/
 out/
 data_in/
-prompts/prompt.refine1.txt
+prompts/prompt.refine*.txt
 hashed_out_short/*.csv
 hashed_out/*.csv
 human_dojo_text/*.csv
