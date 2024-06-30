@@ -8,6 +8,8 @@ from moonshot import Moonshot
 from pokkoagroq import PokkoaGroq
 from datascope import PokkoaDataScope
 from baidu import PokkoaBaidu
+from util.character import boyfriend, characters, motivational_sister, best_friend, therapist, poison_tongue
+from util.prompt import get_prompt_by_name, get_prompt_by_name_character
 
 # set up Moonshot
 moonshot = Moonshot()
@@ -32,11 +34,17 @@ models = [moonshot,
           ]
 
 
-def get_prompt_by_name(name):
-    # set up the prompt
-    with open("./prompts/prompt." + name + ".txt", "r") as file:
-        prompt = file.read()
-    return prompt.replace("\n", " ")
+def character_to_params(character, name, models):
+    return {
+        "name": name,
+        "prompt": get_prompt_by_name_character(name, character),
+        "temperature": [character.tone_config.temperature],
+        "top_p": [character.tone_config.top_p],
+        "presence_penalty": [character.tone_config.presence_penalty],
+        "frequency_penalty": [character.tone_config.frequency_penalty],
+        "models": models,
+        "character": character
+    }
 
 
 dojo_setup_simple = {
@@ -89,46 +97,71 @@ dojo_setup_refine1_baidu = {
     "models": [pokkoa_baidu]
 }
 
-dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine1
+dojo_setup_refine3 = {
+    "name": "refine3",
+    "prompt": get_prompt_by_name("refine3"),
+    "temperature": [0.3],
+    "top_p": [0.9],
+    "presence_penalty": [0],
+    "frequency_penalty": [0],
+    "models": [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]
+}
 
-# Define output the directory path
-dir_path = "./out/" + dojo_test_set["name"] + "/"
-# Check if directory exists
-if not os.path.exists(dir_path):
-    # Create the directory
-    os.makedirs(dir_path)
-    print("Directory", dir_path, "created successfully!")
-else:
-    print("Directory", dir_path, "already exists.")
-prompt = dojo_test_set["prompt"]
-print(f"dojo with prompt: {prompt}")
-for running_model in dojo_test_set["models"]:
-    # Test each combination
-    output = [["temperature", "top_p", "presence_penalty", "frequency_penalty", "s", "content"]]
-    # set up the parameters
-    combinations = itertools.product(dojo_test_set["temperature"],
-                                     dojo_test_set["top_p"],
-                                     dojo_test_set["presence_penalty"],
-                                     dojo_test_set["frequency_penalty"])
+dojo_character_refine3 = character_to_params(boyfriend, "refine3",
+                                             [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu])
 
-    for temperature, top_p, presence_penalty, frequency_penalty in combinations:
-        # run model
-        print(f"{running_model.model_namespace} with {temperature}, {top_p}, {presence_penalty}, {frequency_penalty}")
-        start_time = time.time()
-        content = running_model.completion(prompt,
-                                           temperature,
-                                           top_p,
-                                           presence_penalty,
-                                           frequency_penalty)
+dojo_character_refine3s = []
+for character in [motivational_sister, best_friend, therapist,poison_tongue]:
+    dojo_character_refine3s.append(character_to_params(character, "refine3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
-        end_time = time.time()
-        elapsed_time = end_time - start_time
-        print(f"Execution time: {elapsed_time:.6f} seconds")
-        print(content.replace("\n", " "))
-        output.append([temperature, top_p, presence_penalty, frequency_penalty, elapsed_time, content])
-    print("done with:" + running_model.model_namespace)
 
-    with open(dir_path + dojo_test_set["name"] + '.' + str(
-            running_model.model_namespace) + '.' + running_model.model + '.data_output.csv', 'w') as f:
-        write = csv.writer(f, quoting=csv.QUOTE_ALL)
-        write.writerows(output)
+# dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
+def run_dojo_test(dojo_test_set):
+    # Define output the directory path
+    dir_path = "./out/" + dojo_test_set["name"] + "/"
+    # Check if directory exists
+    if not os.path.exists(dir_path):
+        # Create the directory
+        os.makedirs(dir_path)
+        print("Directory", dir_path, "created successfully!")
+    else:
+        print("Directory", dir_path, "already exists.")
+    prompt = dojo_test_set["prompt"]
+    print(f"dojo with prompt: {prompt}")
+    for running_model in dojo_test_set["models"]:
+        # Test each combination
+        output = [["temperature", "top_p", "presence_penalty", "frequency_penalty", "s", "content"]]
+        # set up the parameters
+        combinations = itertools.product(dojo_test_set["temperature"],
+                                         dojo_test_set["top_p"],
+                                         dojo_test_set["presence_penalty"],
+                                         dojo_test_set["frequency_penalty"])
+
+        for temperature, top_p, presence_penalty, frequency_penalty in combinations:
+            # run model
+            print(
+                f"{dojo_test_set['character']},{running_model.model_namespace} with {temperature}, {top_p}, {presence_penalty}, {frequency_penalty}")
+            start_time = time.time()
+            content = running_model.completion(prompt,
+                                               temperature,
+                                               top_p,
+                                               presence_penalty,
+                                               frequency_penalty)
+
+            end_time = time.time()
+            elapsed_time = end_time - start_time
+            print(f"Execution time: {elapsed_time:.6f} seconds")
+            print(content.replace("\n", " "))
+            output.append([temperature, top_p, presence_penalty, frequency_penalty, elapsed_time, content])
+        print("done with:" + running_model.model_namespace)
+
+        with open(f"{dir_path}{dojo_test_set['character'].name}."
+                  f"{dojo_test_set['name']}."
+                  f"{running_model.model_namespace}."
+                  f"{running_model.model}.data_output.csv", 'w') as f:
+            write = csv.writer(f, quoting=csv.QUOTE_ALL)
+            write.writerows(output)
+
+
+for test_case in dojo_character_refine3s:
+    run_dojo_test(test_case)

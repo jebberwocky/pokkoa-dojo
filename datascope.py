@@ -16,8 +16,9 @@ class PokkoaDataScope:
         dashscope.api_key = config["datascope"]["apikey"]
 
     def completion(self, prompt, temperature=0.3, top_p=0.8, presence_penalty=0, frequency_penalty=1.1):
-        if frequency_penalty < 0.0:
-            return " Repetition_penalty should be greater than 0.0"
+        if frequency_penalty <= 0.0:
+            print(" Repetition_penalty should be greater than 0.0, using default")
+        frequency_penalty = 1.1
         print(self.model_namespace, " with model", self.model)
         messages = [self.system_rule,
                     {'role': 'user', 'content': prompt}]
