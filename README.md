@@ -56,6 +56,44 @@ dojo_setup_simple = {
 }
 ```
 
+### util/character.py
+```
+class GPTToneConfig:
+    def __init__(self, name, temperature, top_p, frequency_penalty=0, presence_penalty=0):
+        self.name = name
+        self.temperature = temperature
+        self.top_p = top_p
+        self.frequency_penalty = frequency_penalty
+        self.presence_penalty = presence_penalty
+
+    def __str__(self):
+        return f"{self.name}: Temperature: {self.temperature}, Top-p: {self.top_p}, Frequency Penalty: {self.frequency_penalty}, Presence Penalty: {self.presence_penalty}"
+
+class Character:
+    def __init__(self, name, role, personality, tone_config, prompt):
+        self.name = name
+        self.role = role
+        self.personality = personality
+        self.tone_config = tone_config
+        self.prompt = prompt
+
+    def __str__(self):
+        return f"角色: {self.name} ({self.role})\n性格: {self.personality}\n语气设置: {self.tone_config}\n提示词: {self.prompt}"
+
+# 定义语气设置
+encouraging = GPTToneConfig("鼓励", temperature=0.8, top_p=0.9, frequency_penalty=0.4, presence_penalty=0.3)
+
+default = Character(
+    "预设",
+    "你是一个只解释易经卦像的bot",
+    "你是一个只解释易经卦像的bot",
+    encouraging,
+    "你是一个只解释易经卦像的bot"
+)
+
+characters = [default]
+```
+
 ### run huamn scoring
 - make sure setup the prompt_name in hasher.py and scorer.py
 - run hasher.py to create csv files for scoring
