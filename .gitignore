@@ -2,7 +2,7 @@
 .idea/
 out/
 data_in/
-prompts/prompt.refine*.txt
+prompts/prompt.*.txt
 hashed_out_short/*.csv
 hashed_out/*.csv
 human_dojo_text/*.csv
@@ -14,6 +14,7 @@ prompt.txt
 __pycache__/
 *.py[cod]
 *$py.class
+util/character.py
 
 # C extensions
 *.so

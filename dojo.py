@@ -115,6 +115,20 @@ for character in [motivational_sister, best_friend, therapist,poison_tongue]:
     dojo_character_refine3s.append(character_to_params(character, "refine3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
 
+dojo_setup_robot = {
+    "name": "straightforwardRobot",
+    "prompt": get_prompt_by_name("straightforwardRobot"),
+    "temperature": [0.3],
+    "top_p": [0.9],
+    "presence_penalty": [0],
+    "frequency_penalty": [0],
+    "models": [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]
+}
+dojo_character_robot = []
+for character in [poison_tongue]:
+    dojo_character_robot.append(character_to_params(character, "straightforwardRobot",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
+
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
 def run_dojo_test(dojo_test_set):
     # Define output the directory path
@@ -163,5 +177,5 @@ def run_dojo_test(dojo_test_set):
             write.writerows(output)
 
 
-for test_case in dojo_character_refine3s:
+for test_case in dojo_character_robot:# dojo_character_refine3s:
     run_dojo_test(test_case)
