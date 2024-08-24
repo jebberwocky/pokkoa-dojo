@@ -8,7 +8,7 @@ from moonshot import Moonshot
 from pokkoagroq import PokkoaGroq
 from datascope import PokkoaDataScope
 from baidu import PokkoaBaidu
-from util.character import boyfriend, characters, motivational_sister, best_friend, therapist, poison_tongue
+from util.character import boyfriend,default_calendar, characters,default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot
 from util.prompt import get_prompt_by_name, get_prompt_by_name_character
 
 # set up Moonshot
@@ -45,7 +45,6 @@ def character_to_params(character, name, models):
         "models": models,
         "character": character
     }
-
 
 dojo_setup_simple = {
     "name": "simple",
@@ -111,8 +110,8 @@ dojo_character_refine3 = character_to_params(boyfriend, "refine3",
                                              [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu])
 
 dojo_character_refine3s = []
-for character in [motivational_sister, best_friend, therapist,poison_tongue]:
-    dojo_character_refine3s.append(character_to_params(character, "refine3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+#for character in [motivational_sister, best_friend, therapist,poison_tongue, ]:
+#    dojo_character_refine3s.append(character_to_params(character, "refine3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
 
 dojo_setup_robot = {
@@ -125,8 +124,12 @@ dojo_setup_robot = {
     "models": [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]
 }
 dojo_character_robot = []
-for character in [poison_tongue]:
-    dojo_character_robot.append(character_to_params(character, "straightforwardRobot",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+#for character in [straightforwardrobot]:
+#    dojo_character_robot.append(character_to_params(character, "straightforwardRobot",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
+dojo_daily_test_bot = []
+for character in [default_calendar]:
+    dojo_daily_test_bot.append(character_to_params(character, "daily.simple2",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
 
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
@@ -177,5 +180,5 @@ def run_dojo_test(dojo_test_set):
             write.writerows(output)
 
 
-for test_case in dojo_character_robot:# dojo_character_refine3s:
+for test_case in dojo_daily_test_bot:#dojo_character_robot:# dojo_character_refine3s:
     run_dojo_test(test_case)
