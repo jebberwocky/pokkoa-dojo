@@ -129,7 +129,7 @@ dojo_character_robot = []
 
 dojo_daily_test_bot = []
 for character in [default_calendar]:
-    dojo_daily_test_bot.append(character_to_params(character, "daily.simple2",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+    dojo_daily_test_bot.append(character_to_params(character, "daily.simple3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
 
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
