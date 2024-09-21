@@ -8,7 +8,7 @@ from moonshot import Moonshot
 from pokkoagroq import PokkoaGroq
 from datascope import PokkoaDataScope
 from baidu import PokkoaBaidu
-from util.character import boyfriend,default_calendar, characters,default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot
+from util.character import boyfriend,default_calendar, characters,default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot,cbttherapist
 from util.prompt import get_prompt_by_name, get_prompt_by_name_character
 
 # set up Moonshot
@@ -110,8 +110,8 @@ dojo_character_refine3 = character_to_params(boyfriend, "refine3",
                                              [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu])
 
 dojo_character_refine3s = []
-#for character in [motivational_sister, best_friend, therapist,poison_tongue, ]:
-#    dojo_character_refine3s.append(character_to_params(character, "refine3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+for character in [straightforwardrobot]:
+    dojo_character_refine3s.append(character_to_params(character, "refine3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
 
 dojo_setup_robot = {
@@ -123,13 +123,49 @@ dojo_setup_robot = {
     "frequency_penalty": [0],
     "models": [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]
 }
+
+dojo_setup_robot2 = {
+    "name": "straightforwardRobot2",
+    "prompt": get_prompt_by_name("straightforwardRobot2"),
+    "temperature": [0.3],
+    "top_p": [0.9],
+    "presence_penalty": [0],
+    "frequency_penalty": [0],
+    "models": [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu],
+    "character":straightforwardrobot
+}
+
+dojo_setup_robot3 = {
+    "name": "straightforwardRobot3",
+    "prompt": get_prompt_by_name("straightforwardRobot3"),
+    "temperature": [0.3],
+    "top_p": [0.9],
+    "presence_penalty": [0],
+    "frequency_penalty": [0],
+    "models": [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu],
+    "character":straightforwardrobot
+}
 dojo_character_robot = []
 #for character in [straightforwardrobot]:
 #    dojo_character_robot.append(character_to_params(character, "straightforwardRobot",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
+dojo_character_cbtrobot = []
+for character in [cbttherapist]:
+    dojo_character_cbtrobot.append(character_to_params(character, "refine3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
+
 dojo_daily_test_bot = []
 for character in [default_calendar]:
-    dojo_daily_test_bot.append(character_to_params(character, "daily.simple3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+    dojo_daily_test_bot.append(character_to_params(character, "choicemaker",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
+dojo_setup_refine7 = []
+for character in [default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot,cbttherapist]:
+    dojo_setup_refine7.append(character_to_params(character, "refine7",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
+dojo_setup_refine7_2 = []
+for character in [default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot,cbttherapist]:
+    dojo_setup_refine7_2.append(character_to_params(character, "refine7_2",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
 
 
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
@@ -180,5 +216,5 @@ def run_dojo_test(dojo_test_set):
             write.writerows(output)
 
 
-for test_case in dojo_daily_test_bot:#dojo_character_robot:# dojo_character_refine3s:
+for test_case in dojo_setup_refine7_2:# dojo_character_refine3s:# dojo_character_cbtrobot:#dojo_daily_test_bot:#dojo_character_robot:# dojo_character_refine3s:
     run_dojo_test(test_case)
