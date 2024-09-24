@@ -8,7 +8,7 @@ from moonshot import Moonshot
 from pokkoagroq import PokkoaGroq
 from datascope import PokkoaDataScope
 from baidu import PokkoaBaidu
-from util.character import boyfriend,default_calendar, characters,default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot,cbttherapist
+from util.character import boyfriend,default_calendar, characters,default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot,cbttherapist,mindfulnesshealer
 from util.prompt import get_prompt_by_name, get_prompt_by_name_character
 
 # set up Moonshot
@@ -166,6 +166,14 @@ dojo_setup_refine7_2 = []
 for character in [default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot,cbttherapist]:
     dojo_setup_refine7_2.append(character_to_params(character, "refine7_2",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
+dojo_setup_refine7_3 = []
+for character in [default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot,cbttherapist]:
+    dojo_setup_refine7_3.append(character_to_params(character, "refine7_3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
+dojo_character_mindfulnesshealert = []
+for character in [mindfulnesshealer]:
+    dojo_character_mindfulnesshealert.append(character_to_params(character, "refine3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
 
 
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
@@ -216,5 +224,5 @@ def run_dojo_test(dojo_test_set):
             write.writerows(output)
 
 
-for test_case in dojo_setup_refine7_2:# dojo_character_refine3s:# dojo_character_cbtrobot:#dojo_daily_test_bot:#dojo_character_robot:# dojo_character_refine3s:
+for test_case in dojo_character_mindfulnesshealert:#dojo_setup_refine7_3:# dojo_character_refine3s:# dojo_character_cbtrobot:#dojo_daily_test_bot:#dojo_character_robot:# dojo_character_refine3s:
     run_dojo_test(test_case)
