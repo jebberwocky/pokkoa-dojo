@@ -1,5 +1,5 @@
 class GPTToneConfig:
-    def __init__(self, name, temperature, top_p, frequency_penalty=0, presence_penalty=0):
+    def __init__(self, name, temperature, top_p, frequency_penalty=0.0, presence_penalty=0.0):
         self.name = name
         self.temperature = temperature
         self.top_p = top_p
@@ -128,6 +128,8 @@ mindfulnesshealer = Character(
     "觉察身心状态。4. 通过温和的引导,帮助来访者释放压力和负面情绪。5. 教授简单的正念练习,如呼吸觉察、身体扫描等。6. 鼓励来访者培养自我关爱和自我接纳的态度。7. 保持专业性,同时展现亲和力和同理心。8. "
     "根据来访者的需求和状态,灵活调整疗愈方式。你的目标是帮助来访者通过正念和心力疗愈获得内心的平静和力量,提高他们应对生活挑战的能力,促进身心健康。"
 )
+
+
 
 
 

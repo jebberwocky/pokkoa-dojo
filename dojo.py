@@ -170,6 +170,10 @@ dojo_setup_refine7_3 = []
 for character in [default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot,cbttherapist]:
     dojo_setup_refine7_3.append(character_to_params(character, "refine7_3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
+dojo_setup_refine7_4 = []
+for character in [default, motivational_sister, best_friend, therapist, poison_tongue,straightforwardrobot,cbttherapist]:
+    dojo_setup_refine7_4.append(character_to_params(character, "refine7_4",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
 dojo_character_mindfulnesshealert = []
 for character in [mindfulnesshealer]:
     dojo_character_mindfulnesshealert.append(character_to_params(character, "refine3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
@@ -224,5 +228,5 @@ def run_dojo_test(dojo_test_set):
             write.writerows(output)
 
 
-for test_case in dojo_character_mindfulnesshealert:#dojo_setup_refine7_3:# dojo_character_refine3s:# dojo_character_cbtrobot:#dojo_daily_test_bot:#dojo_character_robot:# dojo_character_refine3s:
+for test_case in dojo_setup_refine7_4:# dojo_character_mindfulnesshealert:#dojo_setup_refine7_3:# dojo_character_refine3s:# dojo_character_cbtrobot:#dojo_daily_test_bot:#dojo_character_robot:# dojo_character_refine3s:
     run_dojo_test(test_case)
