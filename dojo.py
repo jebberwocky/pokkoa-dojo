@@ -191,6 +191,12 @@ dojo_moonshot_debug = []
 for character in [default]:
     dojo_moonshot_debug.append(character_to_params(character, "debug",[moonshot]))
 
+dojo_shorten = []
+for character in [default]:
+    dojo_shorten.append(character_to_params(character, "refine8_1_shorten",[moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
+running_dojo = dojo_shorten
+
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
 def run_dojo_test(dojo_test_set):
     # Define output the directory path
@@ -239,5 +245,5 @@ def run_dojo_test(dojo_test_set):
             write.writerows(output)
 
 
-for test_case in dojo_setup_refine8_1:# dojo_moonshot_debug:# dojo_setup_refine8_0:# dojo_setup_refine7_4:# dojo_character_mindfulnesshealert:#dojo_setup_refine7_3:# dojo_character_refine3s:# dojo_character_cbtrobot:#dojo_daily_test_bot:#dojo_character_robot:# dojo_character_refine3s:
+for test_case in running_dojo:# dojo_setup_refine8_1:# dojo_moonshot_debug:# dojo_setup_refine8_0:# dojo_setup_refine7_4:# dojo_character_mindfulnesshealert:#dojo_setup_refine7_3:# dojo_character_refine3s:# dojo_character_cbtrobot:#dojo_daily_test_bot:#dojo_character_robot:# dojo_character_refine3s:
     run_dojo_test(test_case)
