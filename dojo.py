@@ -195,7 +195,17 @@ dojo_shorten = []
 for character in [default]:
     dojo_shorten.append(character_to_params(character, "refine8_1_shorten",[moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
-running_dojo = dojo_shorten
+
+dojo_calendar = []
+for character in [default]:
+    dojo_calendar.append(character_to_params(character, "daily.personal.simple0",[moonshot]))
+
+dojo_pre_simple = []
+for character in [default]:
+    dojo_pre_simple.append(character_to_params(character, "pre.simple",[moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
+
+running_dojo = dojo_pre_simple
 
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
 def run_dojo_test(dojo_test_set):
