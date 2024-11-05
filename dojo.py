@@ -204,8 +204,16 @@ dojo_pre_simple = []
 for character in [default]:
     dojo_pre_simple.append(character_to_params(character, "pre.simple",[moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
+dojo_pre_simple2 = []
+for character in [default]:
+    dojo_pre_simple2.append(character_to_params(character, "pre.simple2",[moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
-running_dojo = dojo_pre_simple
+dojo_pre_simple3 = []
+for character in [default]:
+    dojo_pre_simple3.append(character_to_params(character, "pre.simple3",[moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
+
+running_dojo = dojo_pre_simple3
 
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
 def run_dojo_test(dojo_test_set):
