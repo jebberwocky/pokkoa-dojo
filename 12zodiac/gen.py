@@ -4,6 +4,9 @@ from moonshot import Moonshot
 
 moonshot = Moonshot()
 running_model = moonshot
+prompt_text_file = 'prompt2'
+output_directory = './out'
+
 
 def safe_concat_fields(data, fields):
     """Efficiently concatenate existing fields from the data dictionary."""
@@ -34,7 +37,7 @@ def main():
 
     for key, value in data.items():
         if 'metadata' not in key:
-            result = replace_template('prompt.txt', value)
+            result = replace_template(prompt_text_file+".txt", value)
             print(result)
             content = running_model.completion(result)
             #print("\n\n")
@@ -43,7 +46,7 @@ def main():
             # Generate timestamp
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             # Construct the filename
-            filename = f"./out/{value['chineseZodiac']}_{timestamp}.txt"
+            filename = f"{output_directory}/{value['chineseZodiac']}_{prompt_text_file}_{timestamp}.txt"
             # Save the content to the file
             with open(filename, 'w', encoding='utf-8') as f:
                 f.write(content)
