@@ -51,6 +51,10 @@ def main():
             with open(filename, 'w', encoding='utf-8') as f:
                 f.write(content)
                 print("write file:", filename)
+            filename2 = f"{output_directory}/{value['chineseZodiac']}_{prompt_text_file}_2.txt"
+            with open(filename2, 'w', encoding='utf-8') as f2:
+                f2.write(content)
+                print("write file:", filename2)
 
 if __name__ == "__main__":
     main()
