@@ -45,7 +45,10 @@ Object.keys(inputData).forEach(key => {
         punchline: zodiacData.运势 && zodiacData.运势[0] ? zodiacData.运势[0] : "默认标语",
         caption: zodiacData.运势 && zodiacData.运势[1] ? zodiacData.运势[1] : "默认描述",
         img: "2025-12z-"+itemId,
-        text: readfile(`./out/${zodiacData.chineseZodiac}_prompt2_2.txt`),
+        text: readfile(`./out/${zodiacData.chineseZodiac}_shorten_2.txt`),
+        outlier: zodiacData.特殊情况,
+        fortune: zodiacData.运势,
+        critical: zodiacData.需要注意的领域,
         actions: [] // You can modify this if needed,
     };
     itemId++

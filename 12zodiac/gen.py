@@ -30,31 +30,30 @@ def replace_template(filename, replacements):
     )
 
 
-def main():
+def main(prompt_text_file):
     """Main function to process zodiac predictions."""
     with open('zodiac-predictions.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
 
     for key, value in data.items():
         if 'metadata' not in key:
-            result = replace_template(prompt_text_file+".txt", value)
+            result = replace_template(prompt_text_file + ".txt", value)
             print(result)
             content = running_model.completion(result)
-            #print("\n\n")
-            #print(content)
-            #print("\n\n")
-            # Generate timestamp
+            # Generate history
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             # Construct the filename
-            filename = f"{output_directory}/{value['chineseZodiac']}_{prompt_text_file}_{timestamp}.txt"
+            filename = f"{output_directory}/history/{value['chineseZodiac']}_{prompt_text_file}_{timestamp}.txt"
             # Save the content to the file
             with open(filename, 'w', encoding='utf-8') as f:
                 f.write(content)
                 print("write file:", filename)
-            filename2 = f"{output_directory}/{value['chineseZodiac']}_{prompt_text_file}_2.txt"
+            filename2 = f"{output_directory}/{value['chineseZodiac']}_{prompt_text_file}.txt"
             with open(filename2, 'w', encoding='utf-8') as f2:
                 f2.write(content)
                 print("write file:", filename2)
 
 if __name__ == "__main__":
-    main()
+    main("prompt2")
+    main("prompt")
+    main("shorten")
