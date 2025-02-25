@@ -8,7 +8,7 @@ import yaml
 config = yaml.safe_load(open("dojo.yaml"))
 
 class PokkoaBaidu:
-    def __init__(self, model="ERNIE-LITE-8K"):
+    def __init__(self, model="ERNIE-Lite-8K-0922"):
         self.model = model
         self.model_namespace = "pokkoa.dojo.baidu"
         self.system_rule = {"role": "system",

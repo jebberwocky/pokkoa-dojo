@@ -20,8 +20,10 @@ pokkoa_mixtral = PokkoaGroq("mixtral-8x7b-32768")
 pokkoa_gemma = PokkoaGroq("gemma-7b-it")
 pokkoa_qwen = PokkoaDataScope("qwen-turbo")
 pokkoa_qwen_72b = PokkoaDataScope("qwen-72b-chat")
+pokkoa_dataScopeDeepseek = PokkoaDataScope("deepseek-v3")
 pokkoa_deepseek = PokkoaDeepSeek("deepseek-chat")
-pokkoa_baidu = PokkoaBaidu("ERNIE-LITE-8K")
+pokkoa_baidu = PokkoaBaidu("ERNIE-Lite-8K-0922")
+pokkoa_qwen_baize = PokkoaDataScope("qwen2-7b-instruct-lora-ft-202502071835-caf2")
 
 # models
 models = [moonshot,
@@ -30,7 +32,8 @@ models = [moonshot,
           pokkoa_gemma,
           pokkoa_qwen,
           pokkoa_qwen_72b,
-          pokkoa_deepseek
+          pokkoa_deepseek,
+          pokkoa_dataScopeDeepseek
           ]
 
 
@@ -183,6 +186,11 @@ for character in [default, motivational_sister, best_friend, therapist, poison_t
     dojo_setup_refine8_1.append(character_to_params(character, "refine8_1",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
 
+dojo_setup_refine8_0_qwen_baize = []
+for character in [default, straightforwardrobot]:
+    dojo_setup_refine8_0_qwen_baize.append(character_to_params(character, "refine8_0",  [pokkoa_qwen_baize]))
+
+
 dojo_character_mindfulnesshealert = []
 for character in [mindfulnesshealer]:
     dojo_character_mindfulnesshealert.append(character_to_params(character, "refine3",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
@@ -212,8 +220,12 @@ dojo_pre_simple3 = []
 for character in [default]:
     dojo_pre_simple3.append(character_to_params(character, "pre.simple3",[moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
+dojo_setup_refine9_datascope_deepseek = []
+for character in [default]:
+    dojo_setup_refine9_datascope_deepseek.append(character_to_params(character, "refine9_0",[pokkoa_dataScopeDeepseek,moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_qwen_baize]))
 
-running_dojo = dojo_pre_simple3
+
+running_dojo = dojo_setup_refine9_datascope_deepseek#dojo_setup_refine8_0_qwen_baize# dojo_pre_simple3
 
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
 def run_dojo_test(dojo_test_set):
