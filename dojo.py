@@ -224,8 +224,11 @@ dojo_setup_refine9_datascope_deepseek = []
 for character in [default]:
     dojo_setup_refine9_datascope_deepseek.append(character_to_params(character, "refine9_0",[pokkoa_dataScopeDeepseek,moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_qwen_baize]))
 
+dojo_calendar_personal = []
+for character in [default]:
+    dojo_calendar_personal.append(character_to_params(character, "daily.personal.simple1",[pokkoa_dataScopeDeepseek,moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_qwen_baize]))
 
-running_dojo = dojo_setup_refine9_datascope_deepseek#dojo_setup_refine8_0_qwen_baize# dojo_pre_simple3
+running_dojo = dojo_calendar_personal#dojo_setup_refine9_datascope_deepseek#dojo_setup_refine8_0_qwen_baize# dojo_pre_simple3
 
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
 def run_dojo_test(dojo_test_set):
