@@ -233,7 +233,12 @@ for character in [default, motivational_sister, best_friend, therapist, poison_t
     dojo_setup_refinex_0.append(character_to_params(character, "refinex_0",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
 
 
-running_dojo = dojo_setup_refinex_0#dojo_setup_refine9_datascope_deepseek#dojo_setup_refine8_0_qwen_baize# dojo_pre_simple3
+dojo_setup_wylq = []
+for character in [default]:
+    dojo_setup_wylq.append(character_to_params(character, "wylq0",  [moonshot, pokkoa_deepseek, pokkoa_qwen, pokkoa_baidu]))
+
+
+running_dojo = dojo_setup_wylq#dojo_setup_refine9_datascope_deepseek#dojo_setup_refine8_0_qwen_baize# dojo_pre_simple3
 
 # dojo_test_set = dojo_setup_refine1_baidu#dojo_setup_refine3#dojo_setup_refine1_baidu#dojo_setup_refine1
 def run_dojo_test(dojo_test_set):
